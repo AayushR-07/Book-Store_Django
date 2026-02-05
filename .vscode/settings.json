@@ -1,0 +1,10 @@
+// .vscode/settings.json
+{
+  "python.languageServer": "Pylance",
+    "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "[html][django-html]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  }
+}
