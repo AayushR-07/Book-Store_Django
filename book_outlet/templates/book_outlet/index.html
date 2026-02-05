@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    {% block content %}
+     <ul>
+    {% for book in books %}
+      <li>{{ book.title }} (Rating: {{ book.rating }})</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
 </body>
 </html>
