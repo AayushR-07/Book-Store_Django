@@ -12,7 +12,10 @@ def registration_form(request):
 
         if form.is_valid():
             print("Success")
-            return redirect('registration:form')
+            return redirect('registration:form',{
+                'form':form,
+                "success":"Successful"
+            })
     else:
         form = RegistrationForm()
 
