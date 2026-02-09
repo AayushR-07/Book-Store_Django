@@ -17,3 +17,11 @@ class RegistrationForm(forms.Form):
         widget=forms.PasswordInput,
         error_messages={'required': 'Password is required'}
     )
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if not len(password) >= 8:
+            raise forms.ValidationError(
+                'Password must be at least 8 characters'
+            )
+        return password

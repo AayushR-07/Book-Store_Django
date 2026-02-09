@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from .forms import RegistrationForm
 from .models import Registration
-
+from django.contrib.auth.hashers import make_password
 
 def registration_form(request):
     """Handle registration form display and submission"""
@@ -11,10 +11,14 @@ def registration_form(request):
         form = RegistrationForm(request.POST)
 
         if form.is_valid():
+            data = form.cleaned_data
+            hashPass = make_password(data['password'])
+            registration = Registration(name=data['name'], email=data['email'], password=hashPass)
+            registration.save()
             print("Success")
-            return redirect('registration:form',{
-                'form':form,
-                "success":"Successful"
+            return render(request, 'registration/form.html', {
+                'form':RegistrationForm(),
+                'success':"Successful"
             })
     else:
         form = RegistrationForm()
