@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'book_outlet',
     'registration',
     'session',
+    'rest_framework',
+    'student',
 ]
 
 MIDDLEWARE = [
