@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Actions </title>
+</head>
+<body>
+    <form action="#">
+        Username:
+        <input type="text" name="username">
+        <br> <br>
+        Password:
+        <input type="password" name="password">
+        <br><br>
+        <button type="submit" id="login-button">Submit</button>
+    </form>
+    <script>
+        function handleSubmit(event){
+            event.preventDefault()
+            document.body.innerHTML += '<h3 id="welcome"> Welcome test user </h3>'
+        }
+         document
+        .getElementById("login-button")
+        .addEventListener("click", handleSubmit);
+    </script>
+</body>
+</html>
