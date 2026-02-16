@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
+from .models import Registration
 
 class RegistrationSerializer(serializers.Serializer):
     """Registration serializer with comprehensive validation"""
@@ -17,3 +19,13 @@ class RegistrationSerializer(serializers.Serializer):
         write_only=True,
         error_messages={'required': 'Password is required', 'blank': 'Password is required'}
     )
+
+    def validate_password(self,value):
+        if len(value)<8:
+            raise serializers.ValidationError(
+                "Length of password should be at least 8")
+        return value
+
+    def create(self, validated_data):
+        validated_data['password']= make_password(validated_data['password'])
+        return Registration.objects.create(**validated_data)
