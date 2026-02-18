@@ -5,6 +5,14 @@ from .forms import RegistrationForm
 from .models import Registration
 from django.contrib.auth.hashers import make_password
 
+def list_user(request):
+    """List all registered users"""
+    users = Registration.objects.all()
+    user_input = "<script>alert(`XSS Attack! ${document.cookie}`);</script>"
+    return render(request, 'registration/index.html', 
+                  {'users': users,
+                    "user_input": user_input })
+
 def registration_form(request):
     """Handle registration form display and submission"""
     if request.method == 'POST':
